@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import logging
+from datetime import datetime
 from typing import Any
 
 from homeassistant.components.sensor import (
@@ -87,7 +88,7 @@ class FireworksCountSensor(CoordinatorEntity, SensorEntity):
         return {
             "postcode": postcode,
             "max_distance_km": max_distance,
-            "last_updated": self.coordinator.last_update_success_time,
+            "last_updated": datetime.now().isoformat(),
         }
 
 class FireworksEventsSensor(CoordinatorEntity, SensorEntity):
@@ -141,7 +142,7 @@ class FireworksEventsSensor(CoordinatorEntity, SensorEntity):
             "max_distance_km": max_distance,
             "event_count": len(events),
             "events": events,
-            "last_updated": self.coordinator.last_update_success_time,
+            "last_updated": datetime.now().isoformat(),
         }
         
         # Add individual event details as separate attributes for easy access
@@ -202,7 +203,7 @@ class FireworksClosestEventSensor(CoordinatorEntity, SensorEntity):
             "postcode": postcode,
             "max_distance_km": max_distance,
             "total_events": len(events),
-            "last_updated": self.coordinator.last_update_success_time,
+            "last_updated": datetime.now().isoformat(),
         }
         
         if not events:

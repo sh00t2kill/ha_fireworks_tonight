@@ -202,5 +202,5 @@ class FireworksCalendar(CoordinatorEntity, CalendarEntity):
         return {
             "postcode": postcode,
             "total_events": len(events),
-            "last_updated": self.coordinator.last_update_success_time,
+            "last_updated": datetime.now().isoformat(),
         }
