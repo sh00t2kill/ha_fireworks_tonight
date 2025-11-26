@@ -87,7 +87,7 @@ class FireworksCountSensor(CoordinatorEntity, SensorEntity):
         return {
             "postcode": postcode,
             "max_distance_km": max_distance,
-            "last_updated": self.coordinator.last_update_success,
+            "last_updated": self.coordinator.last_update_success_time,
         }
 
 class FireworksEventsSensor(CoordinatorEntity, SensorEntity):
@@ -141,7 +141,7 @@ class FireworksEventsSensor(CoordinatorEntity, SensorEntity):
             "max_distance_km": max_distance,
             "event_count": len(events),
             "events": events,
-            "last_updated": self.coordinator.last_update_success,
+            "last_updated": self.coordinator.last_update_success_time,
         }
         
         # Add individual event details as separate attributes for easy access
@@ -202,7 +202,7 @@ class FireworksClosestEventSensor(CoordinatorEntity, SensorEntity):
             "postcode": postcode,
             "max_distance_km": max_distance,
             "total_events": len(events),
-            "last_updated": self.coordinator.last_update_success,
+            "last_updated": self.coordinator.last_update_success_time,
         }
         
         if not events:
