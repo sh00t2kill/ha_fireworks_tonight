@@ -117,7 +117,7 @@ class FireworksCalendar(CoordinatorEntity, CalendarEntity):
                 calendar_event = CalendarEvent(
                     start=start_time,
                     end=end_time,
-                    summary=event.get("location", "Fireworks Event"),  # Use location as title instead of name
+                    summary=event.get("locality", "Fireworks Event"),  # Use locality as summary
                     description=self._build_event_description(event),
                     location=event.get("location", ""),
                     uid=f"fireworks_{event.get('event_id', hash(str(event)))}",  # Use API ID if available
@@ -173,22 +173,29 @@ class FireworksCalendar(CoordinatorEntity, CalendarEntity):
         """Build a description for the calendar event."""
         description_parts = []
         
-        if event.get("description"):
-            description_parts.append(event["description"])
+        # Add location as the first item
+        location = event.get("location")
+        if location:
+            description_parts.append(f"• Location: {location}")
         
         # Add distance information
         distance = event.get("distance_km")
         if distance is not None:
-            description_parts.append(f"Distance: {distance:.1f} km from home")
+            description_parts.append(f"• Distance: {distance:.1f} km from home")
         
         # Add coordinates
         coords = event.get("coordinates", {})
         if coords.get("latitude") and coords.get("longitude"):
             lat = coords["latitude"]
             lon = coords["longitude"]
-            description_parts.append(f"Coordinates: {lat}, {lon}")
+            description_parts.append(f"• Coordinates: {lat}, {lon}")
         
-        return "\n\n".join(description_parts)
+        # Add original description if it exists
+        if event.get("description"):
+            description_parts.append(f"• Details: {event['description']}")
+        
+        # Format as a clean bulleted list
+        return "\n".join(description_parts)
     
     @property
     def extra_state_attributes(self) -> dict[str, Any]:

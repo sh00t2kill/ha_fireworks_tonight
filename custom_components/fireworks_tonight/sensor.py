@@ -149,6 +149,7 @@ class FireworksEventsSensor(CoordinatorEntity, SensorEntity):
         for i, event in enumerate(events):
             attributes[f"event_{i+1}_title"] = event.get("title", "Unknown")
             attributes[f"event_{i+1}_location"] = event.get("location", "Unknown")
+            attributes[f"event_{i+1}_locality"] = event.get("locality", "Unknown")
             attributes[f"event_{i+1}_distance_km"] = event.get("distance_km", 0)
             attributes[f"event_{i+1}_start_time"] = event.get("start_time", "Unknown")
             
@@ -216,6 +217,7 @@ class FireworksClosestEventSensor(CoordinatorEntity, SensorEntity):
         base_attributes.update({
             "title": closest_event.get("title", "Unknown Event"),
             "location": closest_event.get("location", "Unknown Location"),
+            "locality": closest_event.get("locality", "Unknown"),
             "distance_km": closest_event.get("distance_km", 0),
             "coordinates": closest_event.get("coordinates", {}),
             "latitude": closest_event.get("coordinates", {}).get("latitude"),

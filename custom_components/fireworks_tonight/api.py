@@ -136,6 +136,7 @@ class FireworksAPI:
                     nearby_event = {
                         "title": event.get('name', 'Unknown Event'),  # API uses 'name' not 'title'
                         "location": event.get('rawlocation', 'Unknown Location'),
+                        "locality": location.get('locality', 'Unknown'),  # Add locality from location object
                         "coordinates": {
                             "latitude": event_lat,
                             "longitude": event_lon
