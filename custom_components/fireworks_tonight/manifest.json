@@ -1,11 +1,12 @@
 {
   "domain": "fireworks_tonight",
   "name": "Fireworks Tonight",
-  "codeowners": ["@your-username"],
+  "codeowners": ["@sh00t2kill"],
   "config_flow": true,
   "dependencies": [],
-  "documentation": "https://github.com/your-username/fireworks-tonight-ha",
+  "documentation": "https://github.com/sh00t2kill/ha_fireworks_tonight",
   "integration_type": "hub",
+  "issue_tracker": "https://github.com/sh00t2kill/ha_fireworks_tonight/issues",
   "iot_class": "cloud_polling",
   "requirements": ["requests"],
   "version": "1.0.0"
