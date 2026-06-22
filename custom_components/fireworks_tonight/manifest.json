@@ -8,6 +8,6 @@
   "integration_type": "hub",
   "iot_class": "cloud_polling",
   "issue_tracker": "https://github.com/sh00t2kill/ha_fireworks_tonight/issues",
-  "requirements": ["requests"],
+  "requirements": [],
   "version": "1.0.0"
 }
